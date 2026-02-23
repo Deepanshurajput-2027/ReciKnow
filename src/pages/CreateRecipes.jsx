@@ -14,12 +14,14 @@ const CreateRecipes = () => {
 
     const onSubmit = (recipe) => {
         console.log(recipe)
-
         recipe.id = nanoid(10)
-        recipe.ingredients = recipe.ingredients.split(',').map(item => item.trim())
-        recipe.instructions = recipe.instructions.split('\n').map(item => item.trim()).filter(item => item !== '')
 
-        setData([...data, recipe])
+        const copydata = [...data]
+        copydata.push(recipe)
+        setData(copydata)
+
+        localStorage.setItem("recipes", JSON.stringify(copydata))
+
         toast.success("Recipe created successfully")
         reset()
         navigate('/recipes')

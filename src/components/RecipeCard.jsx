@@ -34,7 +34,7 @@ const RecipeCard = ({ recipe }) => {
                             Ingredients
                         </h3>
                         <p className="text-gray-300 text-sm line-clamp-2">
-                            {Array.isArray(recipe.ingredients) ? recipe.ingredients.join(', ') : recipe.ingredients}
+                            {recipe.ingredients}
                         </p>
                     </div>
                     <div>
@@ -42,7 +42,7 @@ const RecipeCard = ({ recipe }) => {
                             Instructions
                         </h3>
                         <p className="text-gray-300 text-sm line-clamp-2">
-                            {(Array.isArray(recipe.instructions) ? recipe.instructions.join(' ') : recipe.instructions).slice(0, 60)}...{" "}
+                            {recipe.instructions.slice(0, 60)}...{" "}
                             <small className="text-blue-500">more</small>
                         </p>
                     </div>
