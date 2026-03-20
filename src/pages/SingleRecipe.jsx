@@ -1,7 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { recipecontext } from '../context/RecipeContext'
 import { useContext, useState, useEffect } from 'react'
-import { PencilIcon, Trash2Icon, XIcon } from 'lucide-react'
+import { PencilIcon, Trash2Icon, XIcon, HeartIcon } from 'lucide-react'
 import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import RecipeForm from '../components/RecipeForm'
@@ -81,11 +81,27 @@ const SingleRecipe = () => {
         )
     }
 
+    const handleFav = () => {
+        const updatedRecipe = { ...recipe, isFavorite: !recipe.isFavorite };
+        const updatedRecipes = data.map(r => String(r.id) === params.id ? updatedRecipe : r);
+        setData(updatedRecipes);
+        localStorage.setItem("recipes", JSON.stringify(updatedRecipes));
+
+        if (updatedRecipe.isFavorite) {
+            toast.success("Recipe added to favorites");
+        } else {
+            toast.warning("Recipe removed from favorites");
+        }
+    }
+
     return (
         <div className="w-full max-w-4xl mx-auto p-6 bg-gray-800 rounded-3xl shadow-2xl my-8 relative">
             <div className="absolute top-6 right-6 flex gap-4">
                 <button onClick={() => setIsEditing(true)} className="p-3 bg-blue-500/20 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
                     <PencilIcon size={24} />
+                </button>
+                <button onClick={handleFav} className="p-3 bg-green-500/20 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition-colors">
+                    <HeartIcon size={24} fill={recipe.isFavorite ? "currentColor" : "none"} />
                 </button>
                 <button onClick={handleDelete} className="p-3 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500 hover:text-white transition-colors">
                     <Trash2Icon size={24} />

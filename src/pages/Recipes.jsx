@@ -20,7 +20,7 @@ const Recipes = () => {
           </p>
         </div>
       ) : (
-        <div className="max-h-[75vh] overflow-y-auto overflow-x-hidden p-4 -m-4">
+        <div className="max-h-[80vh] overflow-y-auto overflow-x-hidden p-4 -m-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {renderRecipe}
           </div>
