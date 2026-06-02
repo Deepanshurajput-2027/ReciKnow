@@ -7,6 +7,7 @@ const RecipeCard = ({ recipe }) => {
             to={`/recipes/details/${recipe.id}`}
             key={recipe.id}
             className="flex flex-col bg-gray-700 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 relative z-0 hover:z-10"
+            aria-label={`View details for ${recipe.title} recipe`}
         >
             <div className="flex flex-col items-center justify-center h-72 w-full p-4 rounded">
                 <img
