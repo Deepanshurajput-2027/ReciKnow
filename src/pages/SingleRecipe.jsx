@@ -66,6 +66,7 @@ const SingleRecipe = () => {
                 <button
                     onClick={() => setIsEditing(false)}
                     className="absolute top-6 right-6 p-3 bg-gray-600/50 text-gray-300 rounded-full hover:bg-gray-600 hover:text-white transition-colors z-10"
+                    aria-label="Close edit form"
                 >
                     <XIcon size={24} />
                 </button>
@@ -97,13 +98,17 @@ const SingleRecipe = () => {
     return (
         <div className="w-full max-w-4xl mx-auto p-6 bg-gray-800 rounded-3xl shadow-2xl my-8 relative">
             <div className="absolute top-6 right-6 flex gap-4">
-                <button onClick={() => setIsEditing(true)} className="p-3 bg-blue-500/20 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                <button onClick={() => setIsEditing(true)} className="p-3 bg-blue-500/20 text-blue-400 rounded-full hover:bg-blue-500 hover:text-white transition-colors" aria-label="Edit recipe">
                     <PencilIcon size={24} />
                 </button>
-                <button onClick={handleFav} className="p-3 bg-green-500/20 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition-colors">
+                <button 
+                    onClick={handleFav} 
+                    className="p-3 bg-green-500/20 text-green-400 rounded-full hover:bg-green-500 hover:text-white transition-colors"
+                    aria-label={recipe.isFavorite ? "Remove from favorites" : "Add to favorites"}
+                >
                     <HeartIcon size={24} fill={recipe.isFavorite ? "currentColor" : "none"} />
                 </button>
-                <button onClick={handleDelete} className="p-3 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500 hover:text-white transition-colors">
+                <button onClick={handleDelete} className="p-3 bg-red-500/20 text-red-400 rounded-full hover:bg-red-500 hover:text-white transition-colors" aria-label="Delete recipe">
                     <Trash2Icon size={24} />
                 </button>
             </div>

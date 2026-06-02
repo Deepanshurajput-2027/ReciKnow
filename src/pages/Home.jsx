@@ -24,7 +24,7 @@ const Home = () => {
       <h1 className="text-4xl font-bold text-white mb-10 text-center">Featured Products</h1>
 
       {productdata.length === 0 ? (
-        <div className="flex justify-center items-center h-64">
+        <div role="status" aria-live="polite" aria-label="Loading products" className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
         </div>
       ) : (
@@ -34,6 +34,9 @@ const Home = () => {
               <div
                 key={product.id}
                 className="bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group cursor-pointer border border-gray-700 hover:border-blue-500/50"
+                role="link"
+                tabIndex={0}
+                aria-label={`View details for ${product.title}`}
               >
                 {/* Image Container */}
                 <div className="h-64 w-full bg-white p-6 relative flex items-center justify-center overflow-hidden">
@@ -69,7 +72,7 @@ const Home = () => {
                     <div className="flex flex-col items-end">
                       <span className="text-xs text-gray-400 uppercase font-semibold">Rating</span>
                       <div className="flex items-center gap-1 bg-gray-700/50 px-2 py-1 rounded-lg">
-                        <StarIcon className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                        <StarIcon className="w-4 h-4 text-yellow-500 fill-yellow-500" aria-hidden="true" />
                         <span className="font-bold text-sm">{product.rating.rate}</span>
                         <span className="text-xs text-gray-400 ml-1">({product.rating.count})</span>
                       </div>
